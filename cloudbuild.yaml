@@ -12,12 +12,15 @@ steps:
       - '-t'
       - 'us-central1-docker.pkg.dev/sdlc-insights-probers-prod/probers/artifact-analysis-prov-probers:latest'
       - '.' # Current directory
+      
+    
 
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'Push'
-    args: 
-      - 'push'
-      - 'us-central1-docker.pkg.dev/sdlc-insights-probers-autopush/probers/artifact-analysis-prov-probers:latest' 
+# Images to push to Artifact Registry.
+# Cloud Build automatically pushes images listed here after the steps are done.
+images:
+  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-autopush/probers/artifact-analysis-prov-probers:latest'
+  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-staging/probers/artifact-analysis-prov-probers:latest'
+  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-prod/probers/artifact-analysis-prov-probers:latest'
 
 options:
   requestedVerifyOption: VERIFIED
