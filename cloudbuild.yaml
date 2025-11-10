@@ -12,15 +12,12 @@ steps:
       - '-t'
       - 'us-central1-docker.pkg.dev/sdlc-insights-probers-prod/probers/artifact-analysis-prov-probers:latest'
       - '.' # Current directory
-      
-    
 
-# Images to push to Artifact Registry.
-# Cloud Build automatically pushes images listed here after the steps are done.
+# Only upload the image corresponding to the project this is being run from
 images:
-  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-autopush/probers/artifact-analysis-prov-probers:latest'
+  #-  'us-central1-docker.pkg.dev/sdlc-insights-probers-autopush/probers/artifact-analysis-prov-probers:latest'
   -  'us-central1-docker.pkg.dev/sdlc-insights-probers-staging/probers/artifact-analysis-prov-probers:latest'
-  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-prod/probers/artifact-analysis-prov-probers:latest'
+  #-  'us-central1-docker.pkg.dev/sdlc-insights-probers-prod/probers/artifact-analysis-prov-probers:latest'
 
 options:
   requestedVerifyOption: VERIFIED
