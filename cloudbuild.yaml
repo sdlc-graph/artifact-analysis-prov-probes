@@ -1,0 +1,27 @@
+steps:
+  # Step 1: Build the Docker image
+  # The image is tagged with the Git short commit SHA ($SHORT_SHA).
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Build'
+    args: 
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/sdlc-insights-probers-autopush/probers/artifact-analysis-prov-probers:latest'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/sdlc-insights-probers-staging/probers/artifact-analysis-prov-probers:latest'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/sdlc-insights-probers-prod/probers/artifact-analysis-prov-probers:latest'
+      - '.' # Current directory
+      
+    
+
+# Images to push to Artifact Registry.
+# Cloud Build automatically pushes images listed here after the steps are done.
+images:
+  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-autopush/probers/artifact-analysis-prov-probers:latest'
+  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-staging/probers/artifact-analysis-prov-probers:latest'
+  -  'us-central1-docker.pkg.dev/sdlc-insights-probers-prod/probers/artifact-analysis-prov-probers:latest'
+
+options:
+  requestedVerifyOption: VERIFIED
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
